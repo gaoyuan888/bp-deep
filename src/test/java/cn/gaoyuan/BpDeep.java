@@ -17,6 +17,7 @@ public class BpDeep {
      * 用三维数组layer_weight记录各节点权重，第一维为层数，第二维为该层节点位置，第三维为下层节点位置,数组的值为某节点到达下层某节点的权重值，初始值为0-1之间的随机数。
      * 为了优化收敛速度，这里采用动量法权值调整，需要记录上一次权值调整量，用三维数组layer_weight_delta来记录，
      * 截距项处理：程序里将截距的值设置为1，这样只需要计算它的权重就可以了
+     *
      * @param layernum//代表神经网络是几层
      * @param rate
      * @param mobp
@@ -44,8 +45,11 @@ public class BpDeep {
 
     //逐层向前计算输出
     public double[] computeOut(double[] in) {
+        //遍历层数
         for (int l = 1; l < layer.length; l++) {
+            //遍历每层节点数
             for (int j = 0; j < layer[l].length; j++) {
+//                第l-1层
                 double z = layer_weight[l - 1][layer[l - 1].length][j];
                 for (int i = 0; i < layer[l - 1].length; i++) {
                     layer[l - 1][i] = l == 1 ? in[i] : layer[l - 1][i];
@@ -60,7 +64,7 @@ public class BpDeep {
     //逐层反向计算误差并修改权重
     public void updateWeight(double[] tar) {
         int l = layer.length - 1;
-        for (int j = 0; j < layerErr[l].length; j++){
+        for (int j = 0; j < layerErr[l].length; j++) {
             layerErr[l][j] = layer[l][j] * (1 - layer[l][j]) * (tar[j] - layer[l][j]);
         }
 
