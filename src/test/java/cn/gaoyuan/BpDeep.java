@@ -60,8 +60,9 @@ public class BpDeep {
     //逐层反向计算误差并修改权重
     public void updateWeight(double[] tar) {
         int l = layer.length - 1;
-        for (int j = 0; j < layerErr[l].length; j++)
+        for (int j = 0; j < layerErr[l].length; j++){
             layerErr[l][j] = layer[l][j] * (1 - layer[l][j]) * (tar[j] - layer[l][j]);
+        }
 
         while (l-- > 0) {
             for (int j = 0; j < layerErr[l].length; j++) {
