@@ -65,14 +65,16 @@ public class BpDeep {
     public void updateWeight(double[] tar) {
         int l = layer.length - 1;
         for (int j = 0; j < layerErr[l].length; j++) {
-            //todo 为什么误差用这个公式-不要纠结这个，反正这个能表达出出误差就是了
+            //todo 为什么误差用这个公式-不要纠结这个，反正这个能表达出出误差的意义就是了->这个能保证实际值与计算值越接近这个值越小
             layerErr[l][j] = layer[l][j] * (1 - layer[l][j]) * (tar[j] - layer[l][j]);
         }
         while (l-- > 0) {
             for (int j = 0; j < layerErr[l].length; j++) {
                 double z = 0.0;
                 for (int i = 0; i < layerErr[l + 1].length; i++) {
-                    z = z + l > 0 ? layerErr[l + 1][i] * layer_weight[l][j][i] : 0;
+                    //第一步，求计算误差所需的数据
+                    z = z + l > 0 ? layer_weight[l][j][i] * layerErr[l + 1][i] : 0;
+                    //第二步，更新权重及动量项-至于动量项为什么这么计算，我不懂
                     layer_weight_delta[l][j][i] = mobp * layer_weight_delta[l][j][i] + rate * layerErr[l + 1][i] * layer[l][j];//隐含层动量调整
                     layer_weight[l][j][i] += layer_weight_delta[l][j][i];//隐含层权重调整
                     if (j == layerErr[l].length - 1) {
@@ -80,6 +82,7 @@ public class BpDeep {
                         layer_weight[l][j + 1][i] += layer_weight_delta[l][j + 1][i];//截距权重调整
                     }
                 }
+                //计算误差项
                 layerErr[l][j] = z * layer[l][j] * (1 - layer[l][j]);//记录误差
             }
         }
