@@ -65,7 +65,7 @@ public class BpDeep {
     public void updateWeight(double[] tar) {
         int l = layer.length - 1;
         for (int j = 0; j < layerErr[l].length; j++) {
-            //todo 为什么误差用这个公式
+            //todo 为什么误差用这个公式-不要纠结这个，反正这个能表达出出误差就是了
             layerErr[l][j] = layer[l][j] * (1 - layer[l][j]) * (tar[j] - layer[l][j]);
         }
         while (l-- > 0) {
