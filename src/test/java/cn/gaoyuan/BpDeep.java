@@ -68,7 +68,6 @@ public class BpDeep {
             //todo 为什么误差用这个公式
             layerErr[l][j] = layer[l][j] * (1 - layer[l][j]) * (tar[j] - layer[l][j]);
         }
-
         while (l-- > 0) {
             for (int j = 0; j < layerErr[l].length; j++) {
                 double z = 0.0;

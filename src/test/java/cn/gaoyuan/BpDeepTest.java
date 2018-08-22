@@ -16,9 +16,11 @@ public class BpDeepTest {
         double[][] target = new double[][]{{1, 0}, {0, 1}, {0, 1}, {1, 0}};
 
         //迭代训练5000次
-        for (int n = 0; n < 5000; n++)
-            for (int i = 0; i < data.length; i++)
+        for (int n = 0; n < 5000; n++){
+            for (int i = 0; i < data.length; i++){
                 bp.train(data[i], target[i]);
+            }
+        }
 
         //根据训练结果来检验样本数据
         for (int j = 0; j < data.length; j++) {
