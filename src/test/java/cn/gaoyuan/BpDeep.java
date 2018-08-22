@@ -61,10 +61,11 @@ public class BpDeep {
         return layer[layer.length - 1];
     }
 
-    //逐层反向计算误差并修改权重
+    //逐层反向计算误差并修改权重-->重点
     public void updateWeight(double[] tar) {
         int l = layer.length - 1;
         for (int j = 0; j < layerErr[l].length; j++) {
+            //todo 为什么误差用这个公式
             layerErr[l][j] = layer[l][j] * (1 - layer[l][j]) * (tar[j] - layer[l][j]);
         }
 
