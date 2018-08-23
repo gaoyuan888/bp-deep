@@ -74,7 +74,7 @@ public class BpDeep {
                 for (int i = 0; i < layerErr[l + 1].length; i++) {
                     //第一步，求计算误差所需的数据
                     z = z + l > 0 ? layer_weight[l][j][i] * layerErr[l + 1][i] : 0;
-                    //第二步，更新权重及动量项-至于动量项为什么这么计算，我不懂
+                    //第二步，先求动量项再求权重
                     layer_weight_delta[l][j][i] = mobp * layer_weight_delta[l][j][i] + rate * layerErr[l + 1][i] * layer[l][j];//隐含层动量调整
                     layer_weight[l][j][i] += layer_weight_delta[l][j][i];//隐含层权重调整
                     if (j == layerErr[l].length - 1) {
