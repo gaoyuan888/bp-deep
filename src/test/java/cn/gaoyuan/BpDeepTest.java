@@ -11,9 +11,9 @@ public class BpDeepTest {
 
 
         //设置样本数据，对应上面的4个二维坐标数据
-        double[][] data = new double[][]{{1, 2}, {2, 2}, {1, 1}, {2, 1}};
+        double[][] data = new double[][]{{1, 2}, {2, 2}, {1, 1}, {2, 1},{0,0},{3,1},{1,3}};
         //设置目标数据，对应4个坐标数据的分类
-        double[][] target = new double[][]{{1, 0}, {0, 1}, {0, 1}, {1, 0}};
+        double[][] target = new double[][]{{1, 0}, {0, 1}, {0, 1}, {1, 0},{0,1},{0,1},{0,1}};
 
         //迭代训练5000次
         for (int n = 0; n < 5000; n++){
@@ -29,7 +29,7 @@ public class BpDeepTest {
         }
 
         //根据训练结果来预测一条新数据的分类
-        double[] x = new double[]{3, 1};
+        double[] x = new double[]{5, 1};
         double[] result = bp.computeOut(x);
         System.out.println(Arrays.toString(x) + ":" + Arrays.toString(result));
     }
