@@ -1,4 +1,4 @@
-package cn.gaoyuan;
+package cn.gaoyuan.core;
 
 import java.util.Arrays;
 
