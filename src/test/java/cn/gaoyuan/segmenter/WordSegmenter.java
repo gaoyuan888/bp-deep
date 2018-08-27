@@ -15,9 +15,9 @@ public interface WordSegmenter {
      * @param text 文本
      * @return 所有的分词结果，去除重复
      */
-    default public Set<String> seg(String text) {
-        return segMore(text).values().stream().collect(Collectors.toSet());
-    }
+//    default public Set<String> seg(String text) {
+//        return segMore(text).values().stream().collect(Collectors.toSet());
+//    }
     /**
      * 获取文本的所有分词结果
      * @param text 文本
