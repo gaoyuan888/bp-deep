@@ -8,6 +8,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+       Integer a=null;
+       a=a==null?1:a;
+        System.out.println(a);
     }
 }
