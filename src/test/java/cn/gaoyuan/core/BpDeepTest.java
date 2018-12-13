@@ -8,6 +8,7 @@ public class BpDeepTest {
         //第一个参数是一个整型数组，表示神经网络的层数和每层节点数，比如{3,10,10,10,10,2}表示输入层是3个节点，输出层是2个节点，中间有4层隐含层，每层10个节点
         //第二个参数是学习步长，第三个参数是动量系数
         BpDeep bp = new BpDeep(new int[]{2,10, 2}, 0.15, 0.8);
+//        BpDeep bp = new BpDeep(new int[]{2,10, 2}, 0.8, 0.1);
 
 
         //设置样本数据，对应上面的4个二维坐标数据
@@ -29,7 +30,7 @@ public class BpDeepTest {
         }
 
         //根据训练结果来预测一条新数据的分类
-        double[] x = new double[]{5, 1};
+        double[] x = new double[]{0, 0};
         double[] result = bp.computeOut(x);
         System.out.println(Arrays.toString(x) + ":" + Arrays.toString(result));
     }
